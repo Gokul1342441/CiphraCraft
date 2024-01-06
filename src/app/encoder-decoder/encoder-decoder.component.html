@@ -1,0 +1,36 @@
+<div class="flex items-center justify-center">
+    <div class="p-8 max-w-md">
+      <label for="method" class="block label-text font-medium">Select Method:</label>
+      <div>
+        <select [(ngModel)]="selectedMethod" class="select select-bordered w-full max-w-xs">
+          <option disabled>Choose an option</option>
+          <option value="morse">Morse Code</option>
+          <option value="pigpen">Pigpen Code</option>
+          <option value="phoneticalphabet">Phonetic Alphabet Code</option>
+        </select>
+      </div>
+    
+      <label for="operation" class="block mt-4 label-text font-medium">Select Operation:</label>
+      <div>
+        <select [(ngModel)]="selectedOperation" class="select select-bordered w-full max-w-xs">
+          <option disabled>Choose an option</option>
+          <option value="encode">Encode</option>
+          <option value="decode">Decode</option>
+        </select>
+      </div>
+    
+      <label for="inputText" class="block mt-4 label-text font-medium">Enter Text:</label>
+      <textarea id="inputText" [(ngModel)]="inputText" class="textarea textarea-bordered" placeholder="Bio" [style]="{'width':'100%'}"></textarea>
+      
+      <div class="mt-4">
+        <button (click)="encodeDecode()" class="btn btn-wide" [style]="{'width':'100%'}">Submit</button>
+      </div>
+    
+      <label for="outputText" class="block mt-4 label-text font-medium">Output Text:</label>
+      <div class="flex">
+        <textarea id="outputText" [readonly]="true" [(ngModel)]="outputText" class="textarea textarea-bordered" [style]="{'min-width':'100%'}"></textarea>
+        <button (click)="copyToClipboard()" class="btn btn-active btn-link">Copy</button>
+      </div>
+    </div>
+  </div>
+  
