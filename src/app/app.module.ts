@@ -5,14 +5,16 @@ import { AppComponent } from './app.component';
 import { EncoderDecoderComponent } from './encoder-decoder/encoder-decoder.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component'; // Import ReactiveFormsModule
+import { FooterComponent } from './components/footer/footer.component';
+import { EncryptionComponent } from './encryption/encryption.component'; // Import ReactiveFormsModule
 
 @NgModule({
   declarations: [
     AppComponent,
     EncoderDecoderComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    EncryptionComponent
   ],
   imports: [
     BrowserModule,

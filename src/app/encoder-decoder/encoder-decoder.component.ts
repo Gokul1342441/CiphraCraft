@@ -74,4 +74,11 @@ export class EncoderDecoderComponent {
     document.execCommand('copy');
     document.body.removeChild(textArea);
   }
+
+  clearFields() {
+    this.inputText = '';
+    this.outputText = '';
+    this.errorMessage = '';
+  }
+  
 }
