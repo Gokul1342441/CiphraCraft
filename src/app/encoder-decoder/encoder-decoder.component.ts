@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MorseCodeService } from '../service/morse-code.service';
 import { PigpenCodeService } from '../service/pigpen-code.service';
 import { PhoneticAlphabetService } from '../service/phonetic-alphabet.service';
+import { TapCodeService } from '../service/tap-code.service';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class EncoderDecoderComponent {
     private morseCodeService: MorseCodeService,
     private pigpenCodeService: PigpenCodeService,
     private phoneticAlphabetservice: PhoneticAlphabetService,
+    private tapcodeservice: TapCodeService
   ) { }
 
   encodeDecode() {
@@ -46,6 +48,13 @@ export class EncoderDecoderComponent {
             this.outputText = this.phoneticAlphabetservice.textToPhoneticAlphabet(this.inputText);
           } else if (this.selectedOperation === 'decode') {
             this.outputText = this.phoneticAlphabetservice.phoneticAlphabetToText(this.inputText);
+          }
+          break;
+        case 'tapcodeservice':
+          if(this.selectedOperation === 'encode'){
+            this.outputText= this.tapcodeservice.textToTapCode(this.inputText);
+          } else if (this.selectedOperation === 'decode'){
+            this.outputText= this.tapcodeservice.tapCodeToText(this.inputText);
           }
           break;
         default:
