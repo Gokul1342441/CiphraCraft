@@ -4,10 +4,9 @@
       <div>
         <select [(ngModel)]="selectedMethod" (change)="clearFields()" class="select select-bordered w-full max-w-xs">
           <option disabled>Choose an option</option>
-          <option value="morse"> Advanced Encryption Standard (AES)</option>
-          <option value="pigpen">Rivest-Shamir-Adleman (RSA)</option>
-          <option value="phoneticalphabet">Triple Data Encryption Standard (DES)</option>
-          <option value="tapcodeservice"> Blowfish</option>
+          <option value="AES"> Advanced Encryption Standard (AES)</option>
+          <option value="DES">DES</option>
+          <option value="TripleDES">Triple-DES</option>
         </select>
       </div>
   
@@ -15,16 +14,19 @@
       <div>
         <select [(ngModel)]="selectedOperation" (change)="clearFields()" class="select select-bordered w-full max-w-xs">
           <option disabled>Choose an option</option>
-          <option value="encode">Encode</option>
-          <option value="decode">Decode</option>
+          <option value="Encryption">Encryption</option>
+          <option value="Decryption">Decryption</option>
         </select>
       </div>
   
+      <label for="inputText" class="block mt-4 label-text font-medium">Enter Key:</label>
+      <textarea id="inputText" [(ngModel)]="key" class="textarea textarea-bordered" placeholder="Type your Text..." [style]="{'width':'100%'}"></textarea>
+
       <label for="inputText" class="block mt-4 label-text font-medium">Enter Text:</label>
       <textarea id="inputText" [(ngModel)]="inputText" class="textarea textarea-bordered" placeholder="Type your Text..." [style]="{'width':'100%'}"></textarea>
   
       <div class="mt-4">
-        <button (click)="encodeDecode()" class="btn btn-wide" [style]="{'width':'100%'}">Submit</button>
+        <button  class="btn btn-wide" (click)="EncryptionAlgorithms()" [style]="{'width':'100%'}">Submit</button>
       </div>
   
       <label for="outputText" class="block mt-4 label-text font-medium">Output Text:</label>

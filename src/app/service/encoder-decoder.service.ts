@@ -1,4 +1,4 @@
-// morse-code.service.ts
+// encoder-decoder.service.ts
 
 import { Injectable } from '@angular/core';
 

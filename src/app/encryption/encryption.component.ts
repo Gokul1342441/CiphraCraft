@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EncryptionService } from '../service/encryption.service';
 
 @Component({
   selector: 'app-encryption',
@@ -6,13 +7,48 @@ import { Component } from '@angular/core';
   styleUrl: './encryption.component.css'
 })
 export class EncryptionComponent {
-  selectedMethod: string = 'morse';
+  selectedMethod: string = 'AES';
   selectedOperation: string = 'encode';
+  key:string = '';
   inputText: string = '';
   outputText: string = '';
   errorMessage: string = '';
 
-  encodeDecode() {}
+  constructor(
+    private encryptservice:EncryptionService
+    ){}
+
+  EncryptionAlgorithms() {
+    this.errorMessage = '';
+
+    try {
+      switch(this.selectedMethod) {
+        case 'AES':
+          if(this.selectedOperation === 'Encryption'){
+            this.outputText = this.encryptservice.aesEncrypt(this.inputText,this.key)
+          } else if (this.selectedOperation === 'Decryption'){
+            this.outputText = this.encryptservice.aesDecrypt(this.inputText,this.key)
+          }
+          break;
+        case 'DES':
+          if(this.selectedOperation === 'Encryption'){
+            this.outputText = this.encryptservice.desEncrypt(this.inputText,this.key)
+          } else if (this.selectedOperation === 'Decryption'){
+            this.outputText = this.encryptservice.desDecrypt(this.inputText,this.key)
+          }
+          break;
+        case 'TripleDES':
+          if(this.selectedOperation === 'Encryption'){
+            this.outputText = this.encryptservice.tridesEncrypt(this.inputText,this.key)
+          } else if (this.selectedOperation === 'Decryption'){
+            this.outputText = this.encryptservice.tridesDecrypt(this.inputText,this.key)
+          }
+          break;
+      }
+    } catch(error){
+      this.errorMessage = 'Error processing input. Please check your input and try again.'
+    }
+  }
 
   copyToClipboard() {
     const textArea = document.createElement('textarea');
