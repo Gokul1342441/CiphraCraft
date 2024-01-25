@@ -1,41 +1,29 @@
 <div class="navbar bg-base-100">
   <div class="navbar-start">
-    <div class="dropdown">
-      <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
-        </svg>
+
+    <div class="drawer">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" #drawerToggle />
+      <div class="drawer-content">
+        <label for="my-drawer" class="btn btn-ghost btn-circle drawer-button">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+          </svg>
+        </label>
+      </div> 
+      <div class="drawer-side">
+        <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+        <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" (click)="closeDrawer()">✕</button>
+          </form><br><br>
+          <!-- Sidebar content here -->
+          <li><a onclick="my_modal_3.showModal()">Cipher Algorithms</a></li>
+          <li><a onclick="my_modal_4.showModal()">Upcoming ...</a></li>
+          
+        </ul>
       </div>
-      <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-        <li><a onclick="my_modal_3.showModal()">Cipher Algorithms</a></li>
-        <li><a></a></li>
-        <li><a onclick="my_modal_4.showModal()">About</a></li>
-      </ul>
-
-      <dialog id="my_modal_3" class="modal">
-        <div class="modal-box fullmodal">
-          <form method="dialog">
-            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-          </form>
-          <h3 class="font-bold text-lg">Cipher Algorithms</h3>
-          <app-encryption></app-encryption>
-          <!-- <form method="dialog">
-            <button class="btn">Okay</button>
-          </form> -->
-        </div>
-      </dialog>
-
-      <dialog id="my_modal_4" class="modal">
-        <div class="modal-box">
-          <form method="dialog">
-            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-          </form>
-          <!-- <h3 class="font-bold text-lg">Warning!</h3> -->
-          <p class="py-4">Coming Soon ...</p>
-        </div>
-      </dialog>
-
     </div>
+
   </div>
   <div class="navbar-center">
     <a class="btn btn-ghost text-xl" routerLink="/encoder">CiphraCraft</a>
@@ -74,3 +62,30 @@
     </button>
   </div>
 </div>
+
+
+<!-- CipherAlgorithms -->
+<dialog id="my_modal_3" class="modal">
+  <div class="modal-box fullmodal">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+    <h3 class="font-bold text-lg">Cipher Algorithms</h3>
+    <app-encryption></app-encryption>
+    <!-- <form method="dialog"> -->
+      <!-- <button class="btn">Okay</button> -->
+    <!-- </form> -->
+  </div>
+</dialog>
+
+<!-- upcoming -->
+<dialog id="my_modal_4" class="modal">
+  <div class="modal-box">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+    <h3 class="font-bold text-lg">Warning!</h3>
+    <p class="py-4">Coming Soon ...</p>
+  </div>
+</dialog>
+

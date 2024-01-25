@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  @ViewChild('drawerToggle') drawerToggle!: ElementRef<HTMLInputElement>;
 
+  closeDrawer() {
+    if (this.drawerToggle.nativeElement.checked) {
+      this.drawerToggle.nativeElement.checked = false;
+    }
+  }
+  
 }
