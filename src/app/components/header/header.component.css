@@ -1,0 +1,4 @@
+.fullmodal .modal-open .modal-box, .modal-toggle:checked + .modal .modal-box, .modal:target .modal-box, .modal[open] .modal-box{
+    min-width: 100%;
+    min-height: 100%;
+}
