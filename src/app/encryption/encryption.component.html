@@ -1,43 +1,63 @@
 <div class="flex items-center justify-center">
-    <div class="p-8 max-w-md">
-      <label for="method" class="block label-text font-medium">Select Method:</label>
-      <div>
-        <select [(ngModel)]="selectedMethod" (change)="clearFields()" class="select select-bordered w-full max-w-xs">
-          <option disabled>Choose an option</option>
-          <option value="AES"> Advanced Encryption Standard (AES)</option>
-          <option value="DES">DES</option>
-          <option value="TripleDES">Triple-DES</option>
-        </select>
-      </div>
-  
-      <label for="operation" class="block mt-4 label-text font-medium">Select Operation:</label>
-      <div>
-        <select [(ngModel)]="selectedOperation" (change)="clearFields()" class="select select-bordered w-full max-w-xs">
-          <option disabled>Choose an option</option>
-          <option value="Encryption">Encryption</option>
-          <option value="Decryption">Decryption</option>
-        </select>
-      </div>
-  
-      <label for="inputText" class="block mt-4 label-text font-medium">Enter Key:</label>
-      <textarea id="inputText" [(ngModel)]="key" class="textarea textarea-bordered" placeholder="Type your Text..." [style]="{'width':'100%'}"></textarea>
+  <div class="p-8 max-w-md">
+    <label for="method" class="block label-text font-medium">Select Method:</label>
+    <div>
+      <select [(ngModel)]="selectedMethod" (change)="clearFields()" class="select select-bordered w-full max-w-xs">
+        <option disabled>Choose an option</option>
+        <option value="AES"> Advanced Encryption Standard (AES)</option>
+        <option value="DES">DES</option>
+        <option value="TripleDES">Triple-DES</option>
+      </select>
+    </div>
 
-      <label for="inputText" class="block mt-4 label-text font-medium">Enter Text:</label>
-      <textarea id="inputText" [(ngModel)]="inputText" class="textarea textarea-bordered" placeholder="Type your Text..." [style]="{'width':'100%'}"></textarea>
-  
-      <div class="mt-4">
-        <button  class="btn btn-wide" (click)="EncryptionAlgorithms()" [style]="{'width':'100%'}">Submit</button>
+    <label for="operation" class="block mt-4 label-text font-medium">Select Operation:</label>
+    <div>
+      <select [(ngModel)]="selectedOperation" (change)="clearFields()" class="select select-bordered w-full max-w-xs">
+        <option disabled>Choose an option</option>
+        <option value="Encryption">Encryption</option>
+        <option value="Decryption">Decryption</option>
+      </select>
+    </div>
+
+    <label for="inputText" class="block mt-4 label-text font-medium">Enter Key:</label>
+    <textarea id="inputText" [(ngModel)]="key" class="textarea textarea-bordered" placeholder="Type your Text..."
+      [style]="{'width':'100%'}"></textarea>
+
+    <label for="inputText" class="block mt-4 label-text font-medium">Enter Text:</label>
+    <textarea id="inputText" [(ngModel)]="inputText" class="textarea textarea-bordered" placeholder="Type your Text..."
+      [style]="{'width':'100%'}"></textarea>
+
+    <div class="mt-4">
+      <button class="btn btn-wide" (click)="EncryptionAlgorithms()" [style]="{'width':'100%'}">Submit</button>
+    </div>
+
+    <label for="outputText" class="block mt-4 label-text font-medium">Output Text:</label>
+    <div class="flex">
+      <textarea id="outputText" [readonly]="true" [(ngModel)]="outputText" class="textarea textarea-bordered"
+        [style]="{'min-width':'100%'}"></textarea>
+      <button (click)="copyToClipboard()" class="btn btn-active btn-link">Copy</button>
+      <!-- editor -->
+      <div class="drawer drawer-end">
+        <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content">
+          <!-- Page content here -->
+          <label class="btn btn-active btn-link" for="my-drawer-4">editor</label>
+        </div>
+        <div class="drawer-side">
+          <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
+          <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+            <h3 class="font-bold text-lg">Cipher Algorithms</h3>
+            <form method="dialog">
+              <button class="btn btn- sm btn-circle btn-ghost absolute right-2 top-2" (click)="closeDrawer()">✕</button>
+            </form><br><br>
+            <div class="app-ace-editor" #editor style="width: 100%;height: 500px;"></div>
+          </ul>
+        </div>
       </div>
-  
-      <label for="outputText" class="block mt-4 label-text font-medium">Output Text:</label>
-      <div class="flex">
-        <textarea id="outputText" [readonly]="true" [(ngModel)]="outputText" class="textarea textarea-bordered" [style]="{'min-width':'100%'}"></textarea>
-        <button (click)="copyToClipboard()" class="btn btn-active btn-link">Copy</button>
-      </div>
-  
-      <div class="mt-4">
-        <button (click)="clearFields()" class="btn btn-wide btn-secondary" [style]="{'width':'100%'}">Clear</button>
-      </div>
+
+    </div>
+    <div class="mt-4">
+      <button (click)="clearFields()" class="btn btn-wide btn-secondary" [style]="{'width':'100%'}">Clear</button>
     </div>
   </div>
-  
+</div>

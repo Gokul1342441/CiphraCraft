@@ -1,0 +1,4 @@
+.drawer-end .drawer-toggle:checked ~ .drawer-side > *:not(.drawer-overlay){
+    width: 50%;
+}
+
