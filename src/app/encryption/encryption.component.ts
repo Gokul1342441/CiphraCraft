@@ -25,15 +25,24 @@ export class EncryptionComponent implements AfterViewInit {
 
 
   ngAfterViewInit(): void {
+
+  }
+
+
+  editorbutton(){
+    this.outputText="Use Data?"
+    this.EncryptionAlgorithms();
+    console.log("🚀 ~ EncryptionComponent ~ ngAfterViewInit ~ this.outputText:", this.outputText)
+    
     ace.config.set("fontSize", "20px");
     ace.config.set(
       "basePath",
       "https://unpkg.com/ace-builds@1.4.12/src-noconflict"
     );
     const aceEditor = ace.edit(this.editor.nativeElement);
-    aceEditor.session.setValue("<h1>Ace Editor works great in Angular!</h1>");
+    aceEditor.session.setValue(this.outputText);
     aceEditor.setTheme("ace/theme/textmate");
-    aceEditor.session.setMode("ace/mode/yaml");
+    aceEditor.session.setMode("ace/mode/json");
     aceEditor.on("change", () => {
       console.log(aceEditor.getValue());
     });
@@ -41,9 +50,9 @@ export class EncryptionComponent implements AfterViewInit {
 
 
   closeDrawer() {
-    if (this.drawerToggle.nativeElement.checked) {
+    // if (this.drawerToggle.nativeElement.checked) {
       this.drawerToggle.nativeElement.checked = false;
-    }
+    // }
   }
 
   EncryptionAlgorithms() {
@@ -54,6 +63,7 @@ export class EncryptionComponent implements AfterViewInit {
         case 'AES':
           if (this.selectedOperation === 'Encryption') {
             this.outputText = this.encryptservice.aesEncrypt(this.inputText, this.key)
+            console.log("🚀 ~ EncryptionComponent ~ EncryptionAlgorithms ~ this.outputText:", this.outputText)
           } else if (this.selectedOperation === 'Decryption') {
             this.outputText = this.encryptservice.aesDecrypt(this.inputText, this.key)
           }
