@@ -1,11 +1,14 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { EncryptionService } from '../service/encryption.service';
+import { MessageService } from 'primeng/api';
+import JSONFormatter from 'json-formatter-js';
 import * as ace from "ace-builds";
 
 @Component({
   selector: 'app-encryption',
   templateUrl: './encryption.component.html',
-  styleUrl: './encryption.component.css'
+  styleUrl: './encryption.component.css',
+  providers: [MessageService]
 })
 export class EncryptionComponent implements AfterViewInit {
   @ViewChild('drawerToggle') drawerToggle!: ElementRef<HTMLInputElement>;
@@ -18,9 +21,14 @@ export class EncryptionComponent implements AfterViewInit {
   inputText: string = '';
   outputText: string = '';
   errorMessage: string = '';
+  sidebarVisible: boolean = false;
+  formattedOutputText: string = '';
+  jsonFormatter: any;
+
 
   constructor(
-    private encryptservice: EncryptionService
+    private encryptservice: EncryptionService,
+    private messageService: MessageService
   ) { }
 
 
@@ -29,24 +37,24 @@ export class EncryptionComponent implements AfterViewInit {
   }
 
 
-  editorbutton(){
-    this.outputText="Use Data?"
-    this.EncryptionAlgorithms();
-    console.log("🚀 ~ EncryptionComponent ~ ngAfterViewInit ~ this.outputText:", this.outputText)
-    
-    ace.config.set("fontSize", "20px");
-    ace.config.set(
-      "basePath",
-      "https://unpkg.com/ace-builds@1.4.12/src-noconflict"
-    );
-    const aceEditor = ace.edit(this.editor.nativeElement);
-    aceEditor.session.setValue(this.outputText);
-    aceEditor.setTheme("ace/theme/textmate");
-    aceEditor.session.setMode("ace/mode/json");
-    aceEditor.on("change", () => {
-      console.log(aceEditor.getValue());
-    });
+  json() {
+    if (this.outputText && this.outputText.trim() !== '') {
+      try {
+        const parsedJson = JSON.parse(this.outputText);
+        this.formattedOutputText = JSON.stringify(parsedJson, null, 2);
+        this.jsonFormatter = new JSONFormatter(parsedJson);
+        this.sidebarVisible = true;
+      } catch (error) {
+        console.error('Error parsing JSON:', error);
+        this.messageService.clear();
+        this.messageService.add({ severity: 'error', summary: 'Invalid JSON', detail: 'Output is not valid JSON' });
+      }
+    } else {
+      this.messageService.clear();
+      this.messageService.add({ severity: 'error', summary: 'Empty', detail: 'Output is Empty' });
+    }
   }
+  
 
 
   closeDrawer() {
@@ -63,7 +71,6 @@ export class EncryptionComponent implements AfterViewInit {
         case 'AES':
           if (this.selectedOperation === 'Encryption') {
             this.outputText = this.encryptservice.aesEncrypt(this.inputText, this.key)
-            console.log("🚀 ~ EncryptionComponent ~ EncryptionAlgorithms ~ this.outputText:", this.outputText)
           } else if (this.selectedOperation === 'Decryption') {
             this.outputText = this.encryptservice.aesDecrypt(this.inputText, this.key)
           }
@@ -89,18 +96,26 @@ export class EncryptionComponent implements AfterViewInit {
   }
 
   copyToClipboard() {
+    if(this.outputText && this.outputText.length){
     const textArea = document.createElement('textarea');
     textArea.value = this.outputText;
     document.body.appendChild(textArea);
     textArea.select();
     document.execCommand('copy');
     document.body.removeChild(textArea);
+    this.messageService.clear();
+    this.messageService.add({ severity: 'success', summary: 'Copied', detail: 'Output text copied to clipboard' });
+    } else {
+      this.messageService.clear();
+      this.messageService.add({ severity: 'error', summary: 'Not Copied', detail: 'May Be Empty Data! not Copied' });
+    }
   }
 
   clearFields() {
     this.inputText = '';
     this.outputText = '';
     this.errorMessage = '';
+    this.key = "";
   }
 
 }
