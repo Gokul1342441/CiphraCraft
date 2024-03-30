@@ -3,7 +3,7 @@
   <div class="p-8 max-w-md">
     <label for="method" class="block label-text font-medium">Select Method:</label>
     <div>
-      <select [(ngModel)]="selectedMethod" (change)="clearFields()" class="select select-bordered w-full max-w-xs">
+      <select [(ngModel)]="selectedMethod" (change)="clearFields()" class="select select-bordered w-full">
         <option disabled>Choose an option</option>
         <option value="AES"> Advanced Encryption Standard (AES)</option>
         <option value="DES">DES</option>
@@ -13,7 +13,7 @@
 
     <label for="operation" class="block mt-4 label-text font-medium">Select Operation:</label>
     <div>
-      <select [(ngModel)]="selectedOperation" (change)="clearFields()" class="select select-bordered w-full max-w-xs">
+      <select [(ngModel)]="selectedOperation" (change)="clearFields()" class="select select-bordered w-full">
         <option disabled>Choose an option</option>
         <option value="Encryption">Encryption</option>
         <option value="Decryption">Decryption</option>
