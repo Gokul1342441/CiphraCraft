@@ -18,7 +18,7 @@
           </form><br><br>
           <!-- Sidebar content here -->
           <li><a (click)="showModalAndCloseDrawer('my_modal_3') "onclick="my_modal_3.showModal()">Cipher Algorithms</a></li>
-          <li><a (click)="showModalAndCloseDrawer('my_modal_4') "onclick="my_modal_4.showModal()">Cron Tab</a></li>
+          <li><a (click)="showModalAndCloseDrawer('my_modal_4') "onclick="my_modal_4.showModal()">CloudURL Fetch</a></li>
           
         </ul>
       </div>
@@ -90,8 +90,9 @@
     <form method="dialog">
       <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
     </form>
-    <h3 class="font-bold text-lg">crontab</h3>
+    <h3 class="font-bold text-lg">CloudURL Fetch</h3>
     <!-- <p class="py-4">Coming Soon ...</p> -->
+    <app-cdnurltofile></app-cdnurltofile>
   </div>
 </dialog>
 

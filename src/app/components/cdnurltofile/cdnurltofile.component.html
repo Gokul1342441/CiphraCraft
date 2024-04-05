@@ -1,0 +1,18 @@
+<p-toast [showTransformOptions]="'translateY(10%)'" [showTransitionOptions]="'10ms'" [hideTransitionOptions]="'10ms'" [showTransformOptions]="'translateX(10%)'"></p-toast>
+<div class="flex items-center justify-center">
+    <div class="p-8 max-w-md">
+      <label for="customUrl" class="block label-text font-medium">Enter URL:</label>
+      <input type="text" id="customUrl" [(ngModel)]="customUrl" class="input input-bordered w-full max-w-xs" placeholder="Enter URL">
+  
+      <label for="filename" class="block mt-4 label-text font-medium">Enter Filename:</label>
+      <input type="text" id="filename" [(ngModel)]="filename" class="input input-bordered w-full max-w-xs" placeholder="Enter Filename">
+  
+      <div class="mt-4">
+        <button class="btn btn-wide" (click)="downloadFile()">Download File</button>
+      </div>
+      <div class="mt-4">
+        <button class="btn btn-wide btn-secondary" (click)="clear()">Clear</button>
+      </div>
+    </div>
+  </div>
+  

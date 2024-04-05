@@ -7,11 +7,13 @@ import { EncoderDecoderComponent } from './encoder-decoder/encoder-decoder.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http'; 
 import { EncryptionComponent } from './encryption/encryption.component'; // Import ReactiveFormsModule
 
 // primeng
 import { SidebarModule } from 'primeng/sidebar';
 import { ToastModule } from 'primeng/toast';
+import { CdnurltofileComponent } from './components/cdnurltofile/cdnurltofile.component';
 
 @NgModule({
   declarations: [
@@ -19,10 +21,12 @@ import { ToastModule } from 'primeng/toast';
     EncoderDecoderComponent,
     HeaderComponent,
     FooterComponent,
-    EncryptionComponent
+    EncryptionComponent,
+    CdnurltofileComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
