@@ -9,21 +9,21 @@
 
   <!-- Script to block access to developer tools -->
   <script>
-    (function () {
-      'use strict';
+    // (function () {
+    //   'use strict';
 
-      // Function to block access to the developer tools
-      function blockDevTools() {
-        // Check if the devtools are open by looking at the `console` object
-        if (window.console && (console.firebug || console.table && /firebug/i.test(console.table()) || console.profile && /firebug/i.test(console.profile()))) {
-          // Redirect to another page or take appropriate action
-          window.location.href = 'https://example.com/blocked'; // Replace with your desired URL
-        }
-      }
+    //   // Function to block access to the developer tools
+    //   function blockDevTools() {
+    //     // Check if the devtools are open by looking at the `console` object
+    //     if (window.console && (console.firebug || console.table && /firebug/i.test(console.table()) || console.profile && /firebug/i.test(console.profile()))) {
+    //       // Redirect to another page or take appropriate action
+    //       window.location.href = 'https://example.com/blocked'; // Replace with your desired URL
+    //     }
+    //   }
 
-      // Set up an interval to periodically check for devtools
-      setInterval(blockDevTools, 1000);
-    })();
+    //   // Set up an interval to periodically check for devtools
+    //   setInterval(blockDevTools, 1000);
+    // })();
   </script>
 </head>
 <body>
