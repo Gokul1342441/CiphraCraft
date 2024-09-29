@@ -18,6 +18,7 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { CdnurltofileComponent } from './components/cdnurltofile/cdnurltofile.component';
 import { JsonTreeComponent } from './json-tree/json-tree.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { JsonTreeComponent } from './json-tree/json-tree.component';
     ToastModule,
     DropdownModule,
     ButtonModule,
-    DialogModule
+    DialogModule,
+    InputTextareaModule
     
   ],
   providers: [],

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as CryptoJS from 'crypto-js';
+import { json } from 'd3';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +16,19 @@ export class EncryptionService {
 
   // AES Decryption
   aesDecrypt(ciphertext: string, key: string): string {
-    const bytes = CryptoJS.AES.decrypt(ciphertext, key);
-    return bytes.toString(CryptoJS.enc.Utf8);
+    console.log("🚀 ~ EncryptionService ~ aesDecrypt ~ key:", key)
+    console.log("🚀 ~ EncryptionService ~ aesDecrypt ~ ciphertext:", ciphertext)
+    const bytes = CryptoJS.AES.decrypt(ciphertext, key).toString(
+      CryptoJS.enc.Utf8
+    );
+    console.log("🚀 ~ EncryptionService ~ aesDecrypt ~ bytes:", bytes)
+    return bytes;
   }
 
   // DES Encryption
   desEncrypt(data: string, key: string): string {
+    console.log("🚀 ~ EncryptionService ~ desEncrypt ~ key:", key)
+    console.log("🚀 ~ EncryptionService ~ desEncrypt ~ data:", data)
     return CryptoJS.DES.encrypt(data, key).toString();
   }
 
