@@ -13,7 +13,12 @@ import { EncryptionComponent } from './encryption/encryption.component'; // Impo
 // primeng
 import { SidebarModule } from 'primeng/sidebar';
 import { ToastModule } from 'primeng/toast';
+import { DropdownModule } from 'primeng/dropdown';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 import { CdnurltofileComponent } from './components/cdnurltofile/cdnurltofile.component';
+import { JsonTreeComponent } from './json-tree/json-tree.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [
@@ -22,7 +27,8 @@ import { CdnurltofileComponent } from './components/cdnurltofile/cdnurltofile.co
     HeaderComponent,
     FooterComponent,
     EncryptionComponent,
-    CdnurltofileComponent
+    CdnurltofileComponent,
+    JsonTreeComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +40,12 @@ import { CdnurltofileComponent } from './components/cdnurltofile/cdnurltofile.co
 
     // primeng
     SidebarModule,
-    ToastModule
+    ToastModule,
+    DropdownModule,
+    ButtonModule,
+    DialogModule,
+    InputTextareaModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

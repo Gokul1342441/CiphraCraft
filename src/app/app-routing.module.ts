@@ -4,7 +4,7 @@ import { EncryptionComponent } from './encryption/encryption.component';
 import { EncoderDecoderComponent } from './encoder-decoder/encoder-decoder.component';
 const routes: Routes = [
   {path:'encoder',component:EncoderDecoderComponent},
-  { path: '', redirectTo: '/encoder', pathMatch: 'full' },
+  { path: '', redirectTo: '/encryption', pathMatch: 'full' },
   { path: 'encryption', component: EncryptionComponent },
 ];
 

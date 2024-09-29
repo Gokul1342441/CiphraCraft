@@ -10,5 +10,23 @@
 }
 
 
-@import "primeng/resources/themes/soho-light/theme.css";
+@import "primeng/resources/themes/aura-dark-blue/theme.css";
 @import "primeng/resources/primeng.css";
+
+
+body {
+    background-color: black;
+    color: white;
+}
+
+.p-dropdown {
+    border: 1.5px solid #666666;
+    border-radius: 0.2rem;
+    width: 100%;
+}
+
+.p-dropdown-filter{
+    border-radius: 10px !important;
+}
+
+

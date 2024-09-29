@@ -1,57 +1,111 @@
-<p-toast [showTransformOptions]="'translateY(10%)'" [showTransitionOptions]="'10ms'" [hideTransitionOptions]="'10ms'" [showTransformOptions]="'translateX(10%)'"></p-toast>
-<div class="flex items-center justify-center">
-  <div class="p-8 max-w-md">
-    <label for="method" class="block label-text font-medium">Select Method:</label>
-    <div>
-      <select [(ngModel)]="selectedMethod" (change)="clearFields()" class="select select-bordered w-full">
-        <option disabled>Choose an option</option>
-        <option value="AES"> Advanced Encryption Standard (AES)</option>
-        <option value="DES">DES</option>
-        <option value="TripleDES">Triple-DES</option>
-      </select>
-    </div>
-
-    <label for="operation" class="block mt-4 label-text font-medium">Select Operation:</label>
-    <div>
-      <select [(ngModel)]="selectedOperation" (change)="clearFields()" class="select select-bordered w-full">
-        <option disabled>Choose an option</option>
-        <option value="Encryption">Encryption</option>
-        <option value="Decryption">Decryption</option>
-      </select>
-    </div>
-
-    <label for="inputText" class="block mt-4 label-text font-medium">Enter Key:</label>
-    <textarea id="inputText" [(ngModel)]="key" class="textarea textarea-bordered" placeholder="Type your Text..."
-      [style]="{'width':'100%'}"></textarea>
-
-    <label for="inputText" class="block mt-4 label-text font-medium">Enter Text:</label>
-    <textarea id="inputText" [(ngModel)]="inputText" class="textarea textarea-bordered" placeholder="Type your Text..."
-      [style]="{'width':'100%'}"></textarea>
-
-    <div class="mt-4">
-      <button class="btn btn-wide" (click)="EncryptionAlgorithms()" [style]="{'width':'100%'}">Submit</button>
-    </div>
-
-    <label for="outputText" class="block mt-4 label-text font-medium">Output Text:</label>
-    <div class="flex">
-      <textarea id="outputText" [readonly]="true" [(ngModel)]="outputText" class="textarea textarea-bordered"
-        [style]="{'min-width':'100%'}"></textarea>
-      <button (click)="copyToClipboard()" class="btn btn-active btn-link">Copy</button>
-      <!-- editor -->
-      <div class="drawer drawer-end">
-        <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
-        <div class="drawer-content">
-          <!-- Page content here -->
-          <label class="btn btn-active btn-link" for="my-drawer-4" (click)="json()">viewer</label>
+<!-- component -->
+<div class="bg-dark py-18 sm:py-18" style="margin-top: 100px; margin-bottom: 100px;">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-700 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
+      <div class="p-8 sm:p-10 lg:flex-auto">
+        <div class="lg:col-span-2">
+          <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+            <div class="md:col-span-2 mt-5">
+              <label for="algorithms" class="mt-1">Algorithms</label>
+              <p-dropdown 
+                class="mt-1" 
+                [options]="algorithmsList" 
+                [(ngModel)]="selectedAlgorithm" 
+                optionLabel="type_algorithms"
+                placeholder="Select an Algorithm" 
+                (onChange)="onAlgorithmChange()">
+              </p-dropdown>
+            </div>
+            
+            <div class="md:col-span-2 mt-5">
+              <label for="subAlgorithm" class="mt-1">Sub-Algorithm</label>
+              <p-dropdown 
+                class="mt-1"
+                [disabled]="subAlgorithmList.length === 0"
+                [options]="subAlgorithmList" 
+                [(ngModel)]="selectedSubAlgorithm" 
+                optionLabel="name" 
+                placeholder="Select a Sub Algorithm">
+              </p-dropdown>
+            </div>
+            
+            <div class="md:col-span-1 mt-5">
+              <label for="encType" class="mt-1">Encryption Type</label>
+              <p-dropdown 
+                class="mt-1" 
+                [options]="encType" 
+                [(ngModel)]="selectedEncType" 
+                optionLabel="encryption_type"
+                placeholder="Type">
+              </p-dropdown>
+            </div>
+            
+            <div class="md:col-span-5 mt-5">
+              <label for="key">Key</label>
+              <textarea 
+              class="border mt-1 rounded px-4 w-full " 
+              rows="2" 
+              cols="120" 
+              pInputTextarea 
+              placeholder="Enter your Key"
+              [(ngModel)]="key"
+              > 
+              </textarea>
+            </div>
+            
+            <div class="md:col-span-2">
+              <label for="inputText">Text</label>
+              <textarea 
+              class="border mt-1 rounded px-4 w-full" 
+              rows="5" 
+              cols="45" 
+              pInputTextarea 
+              placeholder="Enter your Text"
+              [(ngModel)]="inputText"
+              > 
+              </textarea>
+            </div>
+            
+            <div class="md:col-span-3">
+              <label for="outputText">Output</label>
+              <textarea
+              class="border mt-1 rounded px-4 w-full"  
+              rows="5" 
+              cols="70" 
+              pInputTextarea 
+              placeholder="Output will appear here"
+              [(ngModel)]="outputText"
+              > 
+              </textarea>
+            </div>
+            
+            <div class="md:col-span-5 text-right">
+              <div class="inline-flex items-end">
+                <p-button [text]="true" label="Goooo!" [loading]="loading" (onClick)="process()" />
+                <p-button severity="danger" [text]="true" (click)="resetForm()"> reset </p-button>
+               <div *ngIf="parsedOutputText">
+                   <p-button severity="secondary" [text]="true" (click)="showJsonCrack()">
+                    View in JSONCrack
+                  </p-button>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="errorMessage">
+              <p style="color: red;">{{ errorMessage }}</p>
+            </div>
+          </div>
         </div>
-        <p-sidebar  [style]="{'width':'50%'}" [modal]="true" [(visible)]="sidebarVisible" position="right">
-            <pre>{{ formattedOutputText }}</pre>
-      </p-sidebar>
       </div>
-
-    </div>
-    <div class="mt-4">
-      <button (click)="clearFields()" class="btn btn-wide btn-secondary" [style]="{'width':'100%'}">Clear</button>
     </div>
   </div>
 </div>
+
+<!-- PrimeNG p-dialog for showing iframe -->
+<p-dialog id="jsoncrack" [(visible)]="displayDialog" [modal]="true">
+  <ng-template pTemplate="header">
+    <p-button severity="secondary" [text]="true" (click)="showJsonCrack()">View in JSONCrack</p-button>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <iframe id="jsoncrackEmbed" src="https://jsoncrack.com/widget" style="width: 100%; height: 850px;" *ngIf="displayDialog"></iframe>
+  </ng-template>
+</p-dialog>
