@@ -41,6 +41,7 @@ export class EncryptionComponent {
   loading: boolean = false;
   parsedOutputText: any;
   displayDialog: boolean = false;
+  displayJsonDialog: boolean = false; 
 
 
   subAlgorithms: { [key: string]: SubAlgorithm[] } = {
@@ -148,12 +149,8 @@ export class EncryptionComponent {
           break;
         case 'ciphers':
           if (this.selectedEncType.code === 'encode') {
-            console.log("🚀 ~ EncryptionComponent ~ process ~ this.key:", this.key)
-            console.log("🚀 ~ EncryptionComponent ~ process ~ this.inputText:", this.inputText)
             this.outputText = this.encryptService.aesEncrypt(this.inputText, this.key);
           } else {
-            console.log("🚀 ~ EncryptionComponent ~ process ~ this.key:", this.key)
-            console.log("🚀 ~ EncryptionComponent ~ process ~ this.inputText:", this.inputText)
             this.outputText = this.encryptService.aesDecrypt(this.inputText, this.key);
           }
           break;
@@ -167,14 +164,16 @@ export class EncryptionComponent {
       }
       try {
         this.parsedOutputText = JSON.parse(this.outputText);
+        if(this.parsedOutputText) {
+          this.displayJsonDialog = true;
+        }
         console.log("🚀 ~ EncryptionComponent ~ process ~ this.parsedOutputText:", this.parsedOutputText);
         // this.displayDialog = true;
       } catch (error) {
-        this.errorMessage = 'Invalid JSON format';
+        // this.errorMessage = 'Invalid JSON format';
         this.parsedOutputText = null;
       }      
     } catch (error:any) {
-      console.log("🚀 ~ EncryptionComponent ~ process ~ error:", error)
       this.errorMessage = error.message;
       this.loading = false;
     } finally {

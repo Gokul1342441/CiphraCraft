@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +9,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http'; 
 import { EncryptionComponent } from './encryption/encryption.component'; // Import ReactiveFormsModule
+// main.ts or app.module.ts
+import '@andypf/json-viewer';
 
 // primeng
 import { SidebarModule } from 'primeng/sidebar';
@@ -28,7 +30,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     FooterComponent,
     EncryptionComponent,
     CdnurltofileComponent,
-    JsonTreeComponent
+    JsonTreeComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +50,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     
   ],
   providers: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

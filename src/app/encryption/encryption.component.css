@@ -9,4 +9,7 @@
     max-width: 100%;
     border-radius: 0px;
 }
+::ng-deep #jsoncrackEditor .p-sidebar-right {
+    width: 60%;;
+}
 

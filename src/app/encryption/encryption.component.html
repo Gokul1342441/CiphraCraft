@@ -81,7 +81,7 @@
             
             <div class="md:col-span-5 text-right">
               <div class="inline-flex items-end">
-                <p-button [text]="true" label="Goooo!" [loading]="loading" (onClick)="process()" />
+                <p-button [text]="true" label="Process" [loading]="loading" (onClick)="process()" />
                 <p-button severity="danger" [text]="true" (click)="resetForm()"> reset </p-button>
                <div *ngIf="parsedOutputText">
                    <p-button severity="secondary" [text]="true" (click)="showJsonCrack()">
@@ -99,6 +99,30 @@
     </div>
   </div>
 </div>
+
+<p-sidebar 
+  id="jsoncrackEditor"
+  header="Parsed JSON Output"
+  position="right" 
+  [(visible)]="displayJsonDialog" 
+  [modal]="true" 
+  [responsive]="true" 
+  [closable]="true">
+  
+  <ng-container *ngIf="parsedOutputText;">
+    <andypf-json-viewer
+      [data]="parsedOutputText"
+      indent="2"
+      expanded="true"
+      theme="default-dark"
+      show-data-types="true"
+      show-toolbar="false"
+      show-copy="true"
+      show-size="true">
+    </andypf-json-viewer>
+  </ng-container>
+</p-sidebar >
+
 
 <!-- PrimeNG p-dialog for showing iframe -->
 <p-dialog id="jsoncrack" [(visible)]="displayDialog" [modal]="true">
